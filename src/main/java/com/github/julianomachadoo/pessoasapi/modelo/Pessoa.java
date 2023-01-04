@@ -21,6 +21,11 @@ public class Pessoa {
     public Pessoa() {
     }
 
+    public Pessoa(String nome, LocalDate dataDeNascimento) {
+        this.nome = nome;
+        this.dataDeNascimento = dataDeNascimento;
+    }
+
     public Long getId() {
         return id;
     }
@@ -46,6 +51,7 @@ public class Pessoa {
     }
 
     public List<Endereco> getEnderecos() {
+
         return enderecos;
     }
 
