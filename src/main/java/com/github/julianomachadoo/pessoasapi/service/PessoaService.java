@@ -3,7 +3,6 @@ package com.github.julianomachadoo.pessoasapi.service;
 import com.github.julianomachadoo.pessoasapi.exceptions.DadosNaoEncontradosException;
 import com.github.julianomachadoo.pessoasapi.modelo.Endereco;
 import com.github.julianomachadoo.pessoasapi.modelo.Pessoa;
-import com.github.julianomachadoo.pessoasapi.repository.EnderecoRepository;
 import com.github.julianomachadoo.pessoasapi.repository.PessoasRepository;
 import com.github.julianomachadoo.pessoasapi.rest.dto.PessoaDTO;
 import com.github.julianomachadoo.pessoasapi.rest.dto.PessoaDetalhadaDTO;
@@ -20,9 +19,6 @@ public class PessoaService {
 
     @Autowired
     private PessoasRepository pessoasRepository;
-
-    @Autowired
-    private EnderecoRepository enderecoRepository;
 
     public List<PessoaDTO> listarPessoas() {
         List<Pessoa> pessoas = pessoasRepository.findAll();
@@ -74,14 +70,5 @@ public class PessoaService {
         pessoaDetalhadaDTO.setDataDeNascimento(pessoa.getDataDeNascimento());
         pessoa.getEnderecos().forEach(pessoaDetalhadaDTO::adicionarEndereco);
         return pessoaDetalhadaDTO;
-    }
-
-    private void verificaEnderecoPrincipal(Pessoa pessoa) {
-        int contador = 0;
-        for (Endereco endereco : pessoa.getEnderecos()) {
-            if (endereco.isEnderecoPrincipal()) contador++;
-        }
-        if (contador > 1)
-            throw new IllegalArgumentException("Não pode haver mais de um endereço principal por pessoa");
     }
 }

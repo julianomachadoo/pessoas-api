@@ -29,6 +29,15 @@ public class Endereco {
         this.isEnderecoPrincipal = isEnderecoPrincipal;
     }
 
+    public Endereco(String logradouro, String cep, Integer numero, String cidade, boolean isEnderecoPrincipal, Pessoa pessoa) {
+        this.logradouro = logradouro;
+        this.CEP = cep;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.isEnderecoPrincipal = isEnderecoPrincipal;
+        this.pessoa = pessoa;
+    }
+
     public Long getId() {
         return id;
     }
