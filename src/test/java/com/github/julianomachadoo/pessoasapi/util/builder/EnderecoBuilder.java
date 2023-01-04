@@ -26,4 +26,16 @@ public class EnderecoBuilder {
     public Endereco criar(){
     return new Endereco(logradouro, CEP, numero, cidade, isEnderecoPrincipal);
     }
+
+    public static Endereco criaEnderecoNaoPrincipalExemplo() {
+        return new EnderecoBuilder()
+                .comLogradouroCEPNumeroECidade("Av. tal", "49000-000", 1000, "Aracaju")
+                .enderecoPrincipal(false).criar();
+    }
+
+    public static Endereco criaEnderecoPrincipalExemplo() {
+        return new EnderecoBuilder()
+                .comLogradouroCEPNumeroECidade("Av. tal", "49000-000", 1000, "Aracaju")
+                .enderecoPrincipal(true).criar();
+    }
 }

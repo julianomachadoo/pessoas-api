@@ -34,4 +34,19 @@ public class PessoaBuilder {
         enderecos.forEach(pessoa::adicionarEndereco);
         return pessoa;
     }
+
+    public static Pessoa criaPessoaExemplo(List<Endereco> enderecos) {
+        PessoaBuilder pessoaBuilder = new PessoaBuilder()
+                .comNome("Juliano")
+                .comDataDeNascimento(LocalDate.of(1994, 9, 16));
+        enderecos.forEach(pessoaBuilder::comEndereco);
+        return pessoaBuilder.criar();
+    }
+
+    public static Pessoa criaPessoaExemploSemEndereco() {
+        return new PessoaBuilder()
+                .comNome("Juliano")
+                .comDataDeNascimento(LocalDate.of(1994, 9, 16))
+                .criar();
+    }
 }
