@@ -7,10 +7,12 @@ import com.github.julianomachadoo.pessoasapi.repository.PessoasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;
 
 @Configuration
+@Profile("default")
 public class Configuracao implements CommandLineRunner {
 
 	@Autowired
