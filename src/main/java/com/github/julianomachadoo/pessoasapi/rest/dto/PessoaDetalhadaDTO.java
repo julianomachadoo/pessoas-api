@@ -3,13 +3,15 @@ package com.github.julianomachadoo.pessoasapi.rest.dto;
 import com.github.julianomachadoo.pessoasapi.modelo.Endereco;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PessoaDTO {
+public class PessoaDetalhadaDTO {
 
     private Long id;
     private String nome;
     private LocalDate dataDeNascimento;
-    private Endereco enderecoPrincipal;
+    private final List<Endereco> enderecos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -35,11 +37,11 @@ public class PessoaDTO {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public Endereco getEnderecoPrincipal() {
-        return enderecoPrincipal;
+    public List<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setEnderecoPrincipal(Endereco enderecoPrincipal) {
-        this.enderecoPrincipal = enderecoPrincipal;
+    public void adicionarEndereco(Endereco endereco) {
+        enderecos.add(endereco);
     }
 }

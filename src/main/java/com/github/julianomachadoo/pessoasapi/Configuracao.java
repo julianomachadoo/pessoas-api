@@ -19,7 +19,7 @@ public class Configuracao implements CommandLineRunner {
 	EnderecoRepository enderecoRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome("Juliano");
 		pessoa.setDataDeNascimento(LocalDate.of(1994, 9, 16));
@@ -45,5 +45,6 @@ public class Configuracao implements CommandLineRunner {
 
 		pessoasRepository.save(pessoa);
 		enderecoRepository.save(endereco);
+		enderecoRepository.save(endereco2);
     }
 }

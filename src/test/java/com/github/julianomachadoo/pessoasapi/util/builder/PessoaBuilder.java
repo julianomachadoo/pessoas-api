@@ -11,7 +11,7 @@ public class PessoaBuilder {
 
     private String nome;
     private LocalDate dataDeNascimento;
-    private List<Endereco> enderecos = new ArrayList<>();
+    private final List<Endereco> enderecos = new ArrayList<>();
 
     public PessoaBuilder comNome(String nome) {
         this.nome = nome;
