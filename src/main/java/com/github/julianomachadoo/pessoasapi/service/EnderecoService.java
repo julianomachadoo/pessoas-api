@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -43,15 +44,28 @@ public class EnderecoService {
         return criaEnderecoDTO(enderecoSalvo);
     }
 
-    private EnderecoDTO criaEnderecoDTO(Endereco enderecoSalvo) {
+    public EnderecoDTO getEnderecoPrincipal(Long id) {
+        Optional<Pessoa> pessoa = pessoasRepository.findById(id);
+        if (pessoa.isEmpty()) throw new DadosNaoEncontradosException("Pessoa não encontrada");
+        try {
+            Endereco endereco = pessoa.get().getEnderecos().stream()
+                    .filter(Endereco::isEnderecoPrincipal).findFirst().get();
+            return criaEnderecoDTO(endereco);
+            
+        } catch (NoSuchElementException e) {
+            throw new DadosNaoEncontradosException("Nao foi encontrado endereço principal para a pessoa informada");
+        }
+    }
+
+    private EnderecoDTO criaEnderecoDTO(Endereco endereco) {
         EnderecoDTO enderecoDTO = new EnderecoDTO();
-        enderecoDTO.setId(enderecoSalvo.getId());
-        enderecoDTO.setPessoaNome(enderecoSalvo.getPessoa().getNome());
-        enderecoDTO.setLogradouro(enderecoSalvo.getLogradouro());
-        enderecoDTO.setCEP(enderecoSalvo.getCEP());
-        enderecoDTO.setNumero(enderecoSalvo.getNumero());
-        enderecoDTO.setCidade(enderecoSalvo.getCidade());
-        enderecoDTO.setEnderecoPrincipal(enderecoSalvo.isEnderecoPrincipal());
+        enderecoDTO.setId(endereco.getId());
+        enderecoDTO.setPessoaNome(endereco.getPessoa().getNome());
+        enderecoDTO.setLogradouro(endereco.getLogradouro());
+        enderecoDTO.setCEP(endereco.getCEP());
+        enderecoDTO.setNumero(endereco.getNumero());
+        enderecoDTO.setCidade(endereco.getCidade());
+        enderecoDTO.setEnderecoPrincipal(endereco.isEnderecoPrincipal());
         return enderecoDTO;
     }
 }

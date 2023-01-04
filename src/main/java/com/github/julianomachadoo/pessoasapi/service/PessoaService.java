@@ -58,8 +58,13 @@ public class PessoaService {
         pessoaDTO.setId(pessoa.getId());
         pessoaDTO.setNome(pessoa.getNome());
         pessoaDTO.setDataDeNascimento(pessoa.getDataDeNascimento());
-        pessoaDTO.setEnderecoPrincipal(
-                pessoa.getEnderecos().stream().filter(Endereco::isEnderecoPrincipal).findFirst().get());
+
+        if (pessoa.getEnderecos().stream().filter(Endereco::isEnderecoPrincipal).findFirst().isEmpty()) {
+            pessoaDTO.setEnderecoPrincipal(null);
+        } else {
+            pessoaDTO.setEnderecoPrincipal(
+                    pessoa.getEnderecos().stream().filter(Endereco::isEnderecoPrincipal).findFirst().get());
+        }
         return pessoaDTO;
     }
 

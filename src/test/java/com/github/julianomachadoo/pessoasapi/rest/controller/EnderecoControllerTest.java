@@ -161,4 +161,25 @@ class EnderecoControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
     }
+
+    @Test
+    void deveriaRetornarErroAoBuscarEnderecoPrincipalNaoCadastrado() throws Exception {
+        Pessoa pessoa = PessoaBuilder.criaPessoaExemploSemEndereco();
+
+        Mockito.when(pessoasRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(pessoa));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/enderecos/1"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    void deveriaRetornarEnderecoPrincipal() throws Exception {
+        Endereco endereco = EnderecoBuilder.criaEnderecoPrincipalExemplo();
+        Pessoa pessoa = PessoaBuilder.criaPessoaExemplo(Collections.singletonList(endereco));
+
+        Mockito.when(pessoasRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(pessoa));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/enderecos/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
 }

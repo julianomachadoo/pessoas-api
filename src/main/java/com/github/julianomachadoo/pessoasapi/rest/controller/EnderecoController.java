@@ -28,4 +28,9 @@ public class EnderecoController {
         URI uri = uriBuilder.path("/enderecos/{id}").buildAndExpand(enderecoDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(enderecoDTO);
     }
+
+    @GetMapping("/{id}")
+    public EnderecoDTO getEnderecoPrincipal(@PathVariable Long id) {
+        return service.getEnderecoPrincipal(id);
+    }
 }
