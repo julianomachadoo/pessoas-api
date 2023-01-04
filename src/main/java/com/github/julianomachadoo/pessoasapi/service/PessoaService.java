@@ -7,6 +7,7 @@ import com.github.julianomachadoo.pessoasapi.repository.EnderecoRepository;
 import com.github.julianomachadoo.pessoasapi.repository.PessoasRepository;
 import com.github.julianomachadoo.pessoasapi.rest.dto.PessoaDTO;
 import com.github.julianomachadoo.pessoasapi.rest.dto.PessoaDetalhadaDTO;
+import com.github.julianomachadoo.pessoasapi.rest.form.CriaPessoaForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,11 @@ public class PessoaService {
         Optional<Pessoa> pessoa = pessoasRepository.findById(id);
         if (pessoa.isEmpty()) throw new DadosNaoEncontradosException("Pessoa não encontrada");
         return criaPessoaDetalhadaDTO(pessoa.get());
+    }
+
+    public PessoaDetalhadaDTO registraPessoa(CriaPessoaForm criaPessoaForm) {
+        Pessoa pessoa = pessoasRepository.save(new Pessoa(criaPessoaForm.getNome(), criaPessoaForm.getDataDeNascimento()));
+        return criaPessoaDetalhadaDTO(pessoa);
     }
 
     private PessoaDTO criaPessoaDTO(Pessoa pessoa) {

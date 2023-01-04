@@ -14,7 +14,7 @@ public class EnderecoBuilder {
         this.logradouro = logradouro;
         this.CEP = CEP;
         this.numero = numero;
-        this.logradouro = cidade;
+        this.cidade = cidade;
         return this;
     }
 
