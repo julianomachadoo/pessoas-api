@@ -40,6 +40,23 @@ public class PessoaService {
         return criaPessoaDetalhadaDTO(pessoa);
     }
 
+    public PessoaDetalhadaDTO editaPessoa(Long id, CriaPessoaForm criaPessoaForm) {
+        Optional<Pessoa> pessoa = pessoasRepository.findById(id);
+        if (pessoa.isEmpty()) throw new DadosNaoEncontradosException("Pessoa não encontrada");
+
+        if (criaPessoaForm.getNome() != null) {
+            if (!criaPessoaForm.getNome().isEmpty()) {
+                pessoa.get().setNome(criaPessoaForm.getNome());
+            }
+        }
+
+        if (criaPessoaForm.getDataDeNascimento() != null) {
+            pessoa.get().setDataDeNascimento(criaPessoaForm.getDataDeNascimento());
+        }
+
+        return criaPessoaDetalhadaDTO(pessoa.get());
+    }
+
     private PessoaDTO criaPessoaDTO(Pessoa pessoa) {
         PessoaDTO pessoaDTO = new PessoaDTO();
         pessoaDTO.setId(pessoa.getId());

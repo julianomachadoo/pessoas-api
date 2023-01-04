@@ -6,6 +6,7 @@ import com.github.julianomachadoo.pessoasapi.repository.EnderecoRepository;
 import com.github.julianomachadoo.pessoasapi.repository.PessoasRepository;
 import com.github.julianomachadoo.pessoasapi.util.builder.EnderecoBuilder;
 import com.github.julianomachadoo.pessoasapi.util.builder.PessoaBuilder;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,6 +39,14 @@ class PessoaControllerTest {
     PessoasRepository pessoasRepository;
     @MockBean
     EnderecoRepository enderecoRepository;
+
+    String JsonCadastro = new JSONObject()
+            .put("nome", "Fulano")
+            .put("dataDeNascimento", "1993-12-05")
+            .toString();
+
+    PessoaControllerTest() throws JSONException {
+    }
 
     @BeforeEach
     public void iniciar() {
@@ -93,8 +102,23 @@ class PessoaControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.post("/pessoas")
                         .content(new JSONObject()
-                                .put("nome", "")
+                                .put("nome", "Juliano")
                                 .put("dataDeNascimento", "199-12-05")
+                                .toString())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/pessoas")
+                        .content(new JSONObject()
+                                .put("nome", "Juliano")
+                                .toString())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/pessoas")
+                        .content(new JSONObject()
+                                .put("nome", "Juliano")
+                                .put("dataDeNascimento", "")
                                 .toString())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
@@ -107,12 +131,20 @@ class PessoaControllerTest {
         Mockito.when(pessoasRepository.save(ArgumentMatchers.any())).thenReturn(pessoa);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/pessoas")
-                        .content(new JSONObject()
-                                .put("nome", "Fulano")
-                                .put("dataDeNascimento", "1993-12-05")
-                                .toString())
+                        .content(JsonCadastro)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
+    }
+
+    @Test
+    void deveriaEditarUmaPessoa() throws Exception {
+        Pessoa pessoa = criaPessoaExemploSemEndereco();
+
+        Mockito.when(pessoasRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(pessoa));
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/pessoas/1")
+                        .content(JsonCadastro).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     private Endereco criaEnderecoExemplo() {

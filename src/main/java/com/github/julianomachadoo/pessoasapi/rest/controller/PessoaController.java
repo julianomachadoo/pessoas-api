@@ -33,9 +33,21 @@ public class PessoaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<PessoaDetalhadaDTO> criarPessoa(@RequestBody @Valid CriaPessoaForm criaPessoaForm, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<PessoaDetalhadaDTO> criarPessoa(
+            @RequestBody @Valid CriaPessoaForm criaPessoaForm, UriComponentsBuilder uriBuilder) {
+
         PessoaDetalhadaDTO pessoaDetalhadaDTO = service.registraPessoa(criaPessoaForm);
         URI uri =uriBuilder.path("/pessoas/{id}").buildAndExpand(pessoaDetalhadaDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(pessoaDetalhadaDTO);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<PessoaDetalhadaDTO> editaPessoa(
+            @PathVariable Long id, @RequestBody CriaPessoaForm criaPessoaForm) {
+
+        PessoaDetalhadaDTO pessoaDetalhadaDTO = service.editaPessoa(id, criaPessoaForm);
+        return ResponseEntity.ok().body(pessoaDetalhadaDTO);
+
     }
 }
