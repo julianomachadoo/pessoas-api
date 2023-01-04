@@ -12,7 +12,7 @@ public class Endereco {
     @ManyToOne
     @JsonIgnore
     private Pessoa pessoa;
-    private String Logradouro;
+    private String logradouro;
     private String CEP;
     private Integer numero;
     private String cidade;
@@ -38,11 +38,11 @@ public class Endereco {
     }
 
     public String getLogradouro() {
-        return Logradouro;
+        return logradouro;
     }
 
     public void setLogradouro(String logradouro) {
-        Logradouro = logradouro;
+        this.logradouro = logradouro;
     }
 
     public String getCEP() {
@@ -82,11 +82,11 @@ public class Endereco {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Endereco endereco = (Endereco) o;
-        return Objects.equals(id, endereco.id) && Objects.equals(Logradouro, endereco.Logradouro) && Objects.equals(CEP, endereco.CEP) && Objects.equals(numero, endereco.numero) && Objects.equals(cidade, endereco.cidade);
+        return Objects.equals(id, endereco.id) && Objects.equals(logradouro, endereco.logradouro) && Objects.equals(CEP, endereco.CEP) && Objects.equals(numero, endereco.numero) && Objects.equals(cidade, endereco.cidade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, Logradouro, CEP, numero, cidade);
+        return Objects.hash(id, logradouro, CEP, numero, cidade);
     }
 }
