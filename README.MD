@@ -29,7 +29,7 @@
 <h3>Opção 1: Acessar via AWS Elastik Beanstalk :relaxed:</h3>
 
 ```
-<a href="http://pessoasapi-env.eba-jndu8qtf.us-east-1.elasticbeanstalk.com/"> pessoas-api </a>
+http://pessoasapi-env.eba-jndu8qtf.us-east-1.elasticbeanstalk.com/
 
 ```
 
