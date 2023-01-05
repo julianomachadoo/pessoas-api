@@ -51,7 +51,7 @@ public class EnderecoService {
             Endereco endereco = pessoa.get().getEnderecos().stream()
                     .filter(Endereco::isEnderecoPrincipal).findFirst().get();
             return criaEnderecoDTO(endereco);
-            
+
         } catch (NoSuchElementException e) {
             throw new DadosNaoEncontradosException("Nao foi encontrado endereço principal para a pessoa informada");
         }
