@@ -28,10 +28,8 @@
 <h2>Como utilizar o programa? :thinking:</h2>
 <h3>Opção 1: Acessar via AWS Elastik Beanstalk :relaxed:</h3>
 
-
 ```
-
-git clone https://github.com/julianomachadoo/forum.git
+<a href="http://pessoasapi-env.eba-jndu8qtf.us-east-1.elasticbeanstalk.com/"> pessoas-api </a>
 
 ```
 
