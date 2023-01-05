@@ -26,17 +26,16 @@
 ![](https://raw.githubusercontent.com/julianomachadoo/pessoas-api/main/img/cobertura-de-testes.png)
 
 <h2>Como utilizar o programa? :thinking:</h2>
+<h3>Opção 1: Acessar via AWS Elastik Beanstalk :relaxed:</h3>
 
-[//]: # (<h3>Opção 1: Acessar via AWS Elastik Beanstalk :relaxed:</h3>)
 
-[//]: # ()
-[//]: # (```)
+```
 
-[//]: # (git clone https://github.com/julianomachadoo/forum.git)
+git clone https://github.com/julianomachadoo/forum.git
 
-[//]: # (```)
+```
 
-<h3>Clone do projeto e build na sua própria maquina :relieved:</h3>
+<h3>Opção 2: Clone do projeto e build na sua própria maquina :relieved:</h3>
 <p>No terminal, clone o projeto:</p>
 
 ```
