@@ -46,7 +46,7 @@ git clone https://github.com/julianomachadoo/pessoas-api.git
 mvn clean package
 ```
 
-<p>E execute o comando abaixo para executar o projeto: (:warning: atenção o projeto utiliza a porta 5000)</p>
+<p>E execute o comando abaixo para executar o projeto: (:warning: atenção o projeto utiliza a porta 8080)</p>
 
 ```
 java -jar ./target/pessoas-api.jar 
