@@ -18,7 +18,7 @@
     <li>POST /pessoas        -  Cria uma pessoa</li>
     <li>PUT  /pessoas/{id}   -  Edita uma pessoa</li>
     <li>POST /enderecos      -  Cria endereço para pessoa</li>
-    <li>GET  /enderecos/{id} -  Informa qual é o endereço princpal da pessoa</li>
+    <li>GET  /enderecos/{id} -  Informa qual é o endereço principal da pessoa cujo id foi informado</li>
 </ul>
 
 <h2>Cobertura de testes: :star_struck:</h2>
