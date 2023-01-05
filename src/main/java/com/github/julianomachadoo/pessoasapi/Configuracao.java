@@ -29,7 +29,7 @@ public class Configuracao implements CommandLineRunner {
 		Endereco endereco = new Endereco();
 		endereco.setCEP("49000-000");
 		endereco.setCidade("Aracaju");
-		endereco.setLogradouro("Av. Augusto Franco");
+		endereco.setLogradouro("Alguma Avenida");
 		endereco.setNumero(3000);
 		endereco.setPessoa(pessoa);
 		endereco.setEnderecoPrincipal(true);
@@ -37,7 +37,7 @@ public class Configuracao implements CommandLineRunner {
 		Endereco endereco2 = new Endereco();
 		endereco2.setCEP("49000-100");
 		endereco2.setCidade("Aracaju");
-		endereco2.setLogradouro("Av. Augusto Franca");
+		endereco2.setLogradouro("Alguma outra avenida");
 		endereco2.setNumero(3001);
 		endereco2.setPessoa(pessoa);
 		endereco2.setEnderecoPrincipal(false);
